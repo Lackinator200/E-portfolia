@@ -1,0 +1,51 @@
+html {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+body {
+    margin: 0;
+    padding: 0;
+
+    width: 100%;
+}
+.nav-Bar {
+    background: linear-gradient(to right, #5096f9, #0515cc);
+    color: white;
+    padding: 10px;
+    text-align: center;
+    height: 40px;   
+}
+
+.nav-Bar .left {
+    float: left;
+    text-align: left;
+}
+
+.nav-Bar .left img {
+    height: 40px;
+    vertical-align: middle;
+}
+
+.nav-Bar .left h3 {
+    display: inline;
+    margin-left: 10px;
+    vertical-align: middle;
+}
+
+.nav-Bar .right {
+    float: right;
+    text-align: right;
+}
+
+.nav-Bar .right a {
+    background: none;
+    color: white;
+    border: none;
+    font-weight: bold;
+    font-size: 16px;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 2%;
+}

@@ -39,7 +39,7 @@ body {
     text-align: right;
 }
 
-.nav-Bar .right button {
+.nav-Bar .right a {
     background: none;
     color: white;
     border: none;
