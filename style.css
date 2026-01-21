@@ -39,7 +39,7 @@ body {
     text-align: right;
 }
 
-.nav-Bar .right a {
+.nav-Bar .right button {
     background: none;
     color: white;
     border: none;
@@ -72,7 +72,7 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
     text-shadow: 2px 2px 4px #000000;
-    margin-top: -220px;
+    margin-top: -20px;
 }
 
 .dropping-texts {
@@ -80,6 +80,7 @@ body {
   width: 180px;
   text-align: left;
   height: 36px;
+  color: yellowgreen;
   vertical-align: -2px;
   position: relative; /* contain absolutely positioned children */
   overflow: hidden;   /* prevent stacked words from showing */
@@ -145,12 +146,6 @@ body {
     font-size: 16px;
     cursor: pointer;
     border-radius: 5px;
-    text-decoration: none;
-}
-
-.get-started-button:hover {
-    background-color: #143768;
-    scale: 1.50;
 }
 
 .page {
@@ -176,21 +171,8 @@ body {
     text-align: center;
 }
 
-.info {
-    display: block;
-    background-color: white;
-    margin: 0 auto;
-    margin-top: 50px;
-    margin-bottom: 50px;
-    width: 100%;
-    height: auto;
-}
 
-.info img {
-    width: 100%;
-    height: 1000px;
-    z-index: 2;
-}
+
 
 
 
