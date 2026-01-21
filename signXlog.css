@@ -4,11 +4,21 @@ html {
     padding: 0;
     width: 100%;
 }
+
+:root {
+    --base-color: #ffffff;
+    --accent-color: #5096f9;
+
+}
+
 body {
     margin: 0;
     padding: 0;
-
+    background-image: url(Photo/signXlog.jpg);
+    background-size: cover;
+    background-position: right;
     width: 100%;
+    overflow: hidden;
 }
 .nav-Bar {
     background: linear-gradient(to right, #5096f9, #0515cc);
@@ -51,6 +61,56 @@ body {
 }
 
 .form {
-    margin: 120px 80px;
-    width: 300px;
+    box-sizing: border-box;
+    width: 400px;
+    background-color: white;
+    padding: 70px;
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    border-radius: 0px 0px 10px 0px;
+}
+
+.form > div {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+}
+
+.form h2 {
+    text-align: center;
+    margin-bottom: 2px;
+    font-family: 'Railway', sans-serif;
+    font-size: 30px;
+}
+
+.form label {
+    flex-shrink: 0;
+    height: 50px;
+    width: 50px;
+    background-color: var(--accent-color);
+    fill: var(--base-color);
+    color: var(--base-color);
+    border-radius: 10px 0px 0px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+.form > div input {
+    flex: 1;
+    height: 50px;
+    padding: 0 15px;
+    border: 1px solid #ddd;
+    border-radius: 0 10px 10px 0;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+.form input {
+    outline: none;
+    align-items: baseline;
 }
