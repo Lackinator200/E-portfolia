@@ -1,12 +1,13 @@
-const appearImageBackground = document.querySelector('.info');
+const whatAreSection = document.querySelector('.what-are');
 
 window.addEventListener('scroll', () => {
     const scrollPosition = window.scrollY + window.innerHeight;
-    const imagePosition = appearImageBackground.offsetTop + appearImageBackground.offsetHeight / 2;
-    if (scrollPosition > imagePosition) {
-        appearImageBackground.classList.add('visible');
+    const whatArePosition = whatAreSection.offsetTop + whatAreSection.offsetHeight / 2;
+    
+    if (scrollPosition > whatArePosition) {
+        whatAreSection.classList.add('visible');
     }
     else {
-        appearImageBackground.classList.remove('visible');
+        whatAreSection.classList.remove('visible');
     }
 });
