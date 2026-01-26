@@ -1,0 +1,3 @@
+getUser()
+setRole()
+saveMessage()

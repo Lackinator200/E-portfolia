@@ -14,13 +14,3 @@ window.addEventListener('scroll', () => {
     }
 });
 
-fetch("http://localhost:3000/api/auth/login", {
-  method: "POST",
-  headers: { "Content-Type": "application/json" },
-  body: JSON.stringify({ username })
-})
-.then(res => res.json())
-.then(data => {
-  localStorage.setItem("token", data.token);
-  window.location.href = "group.html";
-});
