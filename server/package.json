@@ -1,0 +1,23 @@
+{
+  "name": "e-portfolia",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lackinator200/E-portfolia.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Lackinator200/E-portfolia/issues"
+  },
+  "homepage": "https://github.com/Lackinator200/E-portfolia#readme",
+  "description": "",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}

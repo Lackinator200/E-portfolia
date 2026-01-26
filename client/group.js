@@ -312,3 +312,20 @@ widthControl.addEventListener("change", saveLayout);
 heightControl.addEventListener("change", saveLayout);
 
 
+const token = localStorage.getItem("token");
+if (!token) {
+  window.location.href = "index.html";
+}
+const socket = new WebSocket("ws://localhost:8080");
+
+socket.onmessage = e => {
+  const msg = JSON.parse(e.data);
+  showMessage(msg);
+};
+
+function sendMessage(text) {
+  socket.send(JSON.stringify({
+    user: "You",
+    text
+  }));
+}
