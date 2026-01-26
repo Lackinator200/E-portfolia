@@ -25,41 +25,42 @@
 
   <!-- LEFT COLUMN -->
   <div class="column">
-    <div class="box draggable" data-type="chat">
-      <div class="box-header">Chat box ✖</div>
-      <div class="tabs">
-        <button>Group</button>
-        <button>User</button>
-        <button>User</button>
-      </div>
-      <div class="box-content chat-area"></div>
-      <input class="chat-input" placeholder="Text here" />
+    <div class="box" data-type="chat">
+    <div class="box-header">Chat box</div>
+
+    <div class="tabs">
+    <button data-chat="group" class="active">Group</button>
     </div>
 
-    <div class="box draggable" data-type="members">
-      <div class="box-header">Members / Points ✖</div>
-      <div class="box-content">
-        <div class="member">Username <span>8</span></div>
-        <div class="member">Username <span>1</span></div>
-      </div>
+    <div class="box-content chat-area" id="chatArea"></div>
+    <input class="chat-input" id="chatInput" placeholder="Text here" />
     </div>
+
+
+<div class="box" data-type="members">
+  <div class="box-header">Members</div>
+  <div id="memberList"></div>
+</div>
+
   </div>
 
   <!-- RIGHT COLUMN -->
   <div class="column">
-    <div class="box draggable" data-type="portfolio">
-      <div class="box-header">Portfolio <button class="upload">Upload</button> ✖</div>
-      <div class="post">
-        <div class="image">Image</div>
-        <p class="desc">post description</p>
-        <span class="time">date / time</span>
-      </div>
+    <div class="box" data-type="portfolio">
+    <div class="box-header">
+        Portfolio
+        <input type="file" id="upload" hidden />
+        <button onclick="upload.click()">Upload</button>
+    </div>
+    <div id="portfolioFeed"></div>
     </div>
 
-    <div class="box draggable" data-type="calendar">
-      <div class="box-header">Calendar ✖</div>
-      <div class="calendar">Month / Date</div>
+
+    <div class="box" data-type="calendar">
+    <div class="box-header">Calendar</div>
+    <div class="calendar" id="calendar"></div>
     </div>
+
   </div>
 
 </div>
@@ -69,6 +70,7 @@
   <div id="layoutHeader">
     <span>Layout Control</span>
     <button id="togglePanel">▲</button>
+    <button id="editToggle">Edit</button>
   </div>
 
   <div id="layoutBody">
