@@ -4,8 +4,8 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>CommunHub</title>
-        <link rel="stylesheet" href="style.css">
-        <script src="script.js" defer></script>
+        <link rel="stylesheet" href="style3.css">
+        <script src="group.js" defer></script>
     </head>
     <body>
         <section>
@@ -15,10 +15,71 @@
                     <h3 class="title">CommunHub</h3>
                 </div>
                 <div class="right">
-                    <a class="login-button">Login</a>
-                    <a class="signup-button">Sign Up</a>
+                    <a class="home" href="home.html">home</a>
+                    <a class="group-page" href="group_page.html">Group Page</a>
+                    <a class="feed-page" href="feed_page.html">Feed Page</a>
+                    <a class="market-page" href="market_page.html">Market Page</a>
                 </div>
             </div> <!-- hey waseem, ask chatgpt for this one, cuz how would u make the layout of the group plus with member list?-->
+            <div class="page">
+
+  <!-- LEFT COLUMN -->
+  <div class="column">
+    <div class="box draggable" data-type="chat">
+      <div class="box-header">Chat box ✖</div>
+      <div class="tabs">
+        <button>Group</button>
+        <button>User</button>
+        <button>User</button>
+      </div>
+      <div class="box-content chat-area"></div>
+      <input class="chat-input" placeholder="Text here" />
+    </div>
+
+    <div class="box draggable" data-type="members">
+      <div class="box-header">Members / Points ✖</div>
+      <div class="box-content">
+        <div class="member">Username <span>8</span></div>
+        <div class="member">Username <span>1</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RIGHT COLUMN -->
+  <div class="column">
+    <div class="box draggable" data-type="portfolio">
+      <div class="box-header">Portfolio <button class="upload">Upload</button> ✖</div>
+      <div class="post">
+        <div class="image">Image</div>
+        <p class="desc">post description</p>
+        <span class="time">date / time</span>
+      </div>
+    </div>
+
+    <div class="box draggable" data-type="calendar">
+      <div class="box-header">Calendar ✖</div>
+      <div class="calendar">Month / Date</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- LEADER CONTROL PANEL -->
+<div id="layoutPanel" class="collapsed">
+  <div id="layoutHeader">
+    <span>Layout Control</span>
+    <button id="togglePanel">▲</button>
+  </div>
+
+  <div id="layoutBody">
+    <label>Width</label>
+    <input type="range" id="widthControl" min="250" max="700">
+
+    <label>Height</label>
+    <input type="range" id="heightControl" min="200" max="600">
+  </div>
+</div>
+
         </section> 
         
             

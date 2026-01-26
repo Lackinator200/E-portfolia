@@ -1,0 +1,220 @@
+html {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+body {
+    margin: 0;
+    padding: 0;
+
+    width: 100%;
+}
+.nav-Bar {
+    background: linear-gradient(to right, #5096f9, #0515cc);
+    color: white;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.nav-Bar .left {
+    display: flex;
+    align-items: center;
+    text-align: left;
+}
+
+.nav-Bar .left img {
+    height: 40px;
+    vertical-align: middle;
+}
+
+.nav-Bar .left h3 {
+    display: inline;
+    margin-left: 10px;
+    vertical-align: middle;
+}
+
+.nav-Bar .right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.nav-Bar .right button,
+.nav-Bar .right a {
+    background: none;
+    color: white;
+    border: none;
+    font-weight: bold;
+    font-size: 16px;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 2%;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.nav-Bar .right button:hover,
+.nav-Bar .right a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+@media (max-width: 768px) {
+    .nav-Bar {
+        padding: 10px;
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .nav-Bar .left h3 {
+        font-size: 16px;
+    }
+    
+    .nav-Bar .right {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .nav-Bar .right button,
+    .nav-Bar .right a {
+        font-size: 14px;
+        padding: 8px 15px;
+    }
+}
+
+.page {
+  display: flex;
+  padding: 20px;
+  gap: 20px;
+}
+
+.column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.box {
+  background: white;
+  border: 2px solid #000;
+  resize: both;
+  overflow: auto;
+  min-width: 200px;
+  min-height: 150px;
+}
+
+.box-header {
+  background: #eee;
+  padding: 6px;
+  font-weight: bold;
+  cursor: move;
+  display: flex;
+  justify-content: space-between;
+}
+
+.tabs button {
+  margin: 5px;
+}
+
+.chat-area {
+  height: 200px;
+  border: 1px solid #ccc;
+}
+
+.chat-input {
+  width: 95%;
+  margin: 5px;
+}
+
+.member {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
+}
+
+.image {
+  height: 150px;
+  background: #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#layoutPanel {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: white;
+  border: 2px solid black;
+  padding: 10px;
+  width: 220px;
+  display: none;
+}
+
+#layoutPanel label {
+  font-size: 12px;
+  margin-top: 6px;
+  display: block;
+}
+
+#layoutPanel {
+  position: fixed;
+  bottom: 15px;
+  right: 15px;
+  background: white;
+  border: 2px solid black;
+  width: 230px;
+  z-index: 1000;
+  transition: height 0.3s ease;
+}
+
+#layoutHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #ddd;
+  padding: 6px;
+  cursor: pointer;
+}
+
+#layoutBody {
+  padding: 10px;
+}
+
+#layoutPanel.collapsed #layoutBody {
+  display: none;
+}
+
+#togglePanel {
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+/* 📱 Mobile support */
+@media (max-width: 768px) {
+  .page {
+    flex-direction: column;
+  }
+
+  .column {
+    width: 100%;
+  }
+
+  .box {
+    width: 100% !important;
+    position: relative !important;
+  }
+
+  #layoutPanel {
+    width: 90%;
+    left: 5%;
+    right: 5%;
+  }
+}
