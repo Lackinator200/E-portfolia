@@ -15,85 +15,123 @@ const memberList = document.getElementById("memberList");
 
 function renderMembers() {
   memberList.innerHTML = "";
+
   members.forEach(m => {
     const div = document.createElement("div");
     div.className = "member";
-    div.innerHTML = `${m.name}${m.leader ? " ⭐" : ""}<span>${m.points}</span>`;
+    div.innerHTML = `
+      ${m.name} ${m.leader ? "⭐" : ""}
+      <span>${m.points}</span>
+    `;
     memberList.appendChild(div);
   });
 }
+
 renderMembers();
+
 
 /* ===================== CHAT ===================== */
 const chatArea = document.getElementById("chatArea");
 const chatInput = document.getElementById("chatInput");
-const chatTabs = document.getElementById("chatTabs");
+const tabsContainer = document.querySelector(".tabs");
+
 let currentChat = "group";
 
+// Create user tabs
 members.forEach(m => {
   if (m.name !== currentUser) {
     const btn = document.createElement("button");
     btn.textContent = m.name;
     btn.dataset.chat = m.name;
-    chatTabs.appendChild(btn);
+    btn.className = "tab-button";
+    tabsContainer.appendChild(btn);
   }
 });
 
-function loadChat(id) {
+// Load messages
+function loadChat(chatId) {
   chatArea.innerHTML = "";
-  const msgs = JSON.parse(localStorage.getItem(`chat_${groupId}_${id}`) || "[]");
-  msgs.forEach(m => {
+  const messages = JSON.parse(
+    localStorage.getItem(`chat_${groupId}_${chatId}`) || "[]"
+  );
+
+  messages.forEach(msg => {
     const div = document.createElement("div");
-    div.textContent = `${m.user}: ${m.text}`;
+    div.className = "msg";
+    div.textContent = `${msg.user}: ${msg.text}`;
     chatArea.appendChild(div);
   });
+  chatArea.scrollTop = chatArea.scrollHeight;
 }
 
-chatTabs.onclick = e => {
+loadChat("group");
+
+// Switch tabs
+tabsContainer.addEventListener("click", e => {
   if (!e.target.dataset.chat) return;
-  document.querySelectorAll(".tabs button").forEach(b => b.classList.remove("active"));
+
+  document.querySelectorAll(".tabs button")
+    .forEach(b => b.classList.remove("active"));
+
   e.target.classList.add("active");
   currentChat = e.target.dataset.chat;
   loadChat(currentChat);
-};
+});
 
-chatInput.onkeydown = e => {
+// Send message
+chatInput.addEventListener("keydown", e => {
   if (e.key !== "Enter" || !chatInput.value.trim()) return;
+
+  const msg = {
+    user: currentUser,
+    text: chatInput.value,
+    time: Date.now()
+  };
+
   const key = `chat_${groupId}_${currentChat}`;
-  const msgs = JSON.parse(localStorage.getItem(key) || "[]");
-  msgs.push({ user: currentUser, text: chatInput.value });
-  localStorage.setItem(key, JSON.stringify(msgs));
+  const messages = JSON.parse(localStorage.getItem(key) || "[]");
+  messages.push(msg);
+  localStorage.setItem(key, JSON.stringify(messages));
+
   chatInput.value = "";
   loadChat(currentChat);
-};
+});
 
-loadChat("group");
 
 /* ===================== PORTFOLIO ===================== */
 const upload = document.getElementById("upload");
 const feed = document.getElementById("portfolioFeed");
 
-upload.onchange = e => {
+upload.addEventListener("change", e => {
   const file = e.target.files[0];
   if (!file) return;
+
   const reader = new FileReader();
   reader.onload = () => {
-    const posts = JSON.parse(localStorage.getItem(`portfolio_${groupId}`) || "[]");
-    posts.unshift({
+    const post = {
       user: currentUser,
       img: reader.result,
-      desc: prompt("Description"),
+      desc: prompt("Description:"),
       time: new Date().toLocaleString()
-    });
+    };
+
+    const posts = JSON.parse(
+      localStorage.getItem(`portfolio_${groupId}`) || "[]"
+    );
+
+    posts.unshift(post);
     localStorage.setItem(`portfolio_${groupId}`, JSON.stringify(posts));
     renderPortfolio();
   };
   reader.readAsDataURL(file);
-};
+});
 
 function renderPortfolio() {
   feed.innerHTML = "";
-  const posts = JSON.parse(localStorage.getItem(`portfolio_${groupId}`) || "[]");
+  const posts = JSON.parse(
+    localStorage.getItem(`portfolio_${groupId}`) || "[]"
+  );
+
   posts.forEach(p => {
     const div = document.createElement("div");
     div.className = "post";
@@ -106,6 +144,7 @@ function renderPortfolio() {
     feed.appendChild(div);
   });
 }
+
 renderPortfolio();
 
 /* ===================== CALENDAR ===================== */
@@ -113,31 +152,42 @@ const calendar = document.getElementById("calendar");
 
 function renderCalendar() {
   calendar.innerHTML = "";
-  const events = JSON.parse(localStorage.getItem(`calendar_${groupId}`) || "{}");
+  const days = 30;
 
-  for (let i = 1; i <= 30; i++) {
+  for (let i = 1; i <= days; i++) {
     const day = document.createElement("div");
     day.className = "day";
     day.textContent = i;
 
-    if (events[i]) {
-      const dot = document.createElement("div");
-      dot.className = "event-dot";
-      day.appendChild(dot);
-    }
-
     day.onclick = () => {
-      const e = prompt("Event:");
-      if (!e) return;
-      events[i] = e;
+      const event = prompt("Event:");
+      if (!event) return;
+
+      const events = JSON.parse(
+        localStorage.getItem(`calendar_${groupId}`) || "{}"
+      );
+
+      events[i] = event;
       localStorage.setItem(`calendar_${groupId}`, JSON.stringify(events));
       renderCalendar();
     };
 
+    const events = JSON.parse(
+      localStorage.getItem(`calendar_${groupId}`) || "{}"
+    );
+
+    if (events[i]) {
+      const dot = document.createElement("span");
+      dot.className = "event-dot";
+      day.appendChild(dot);
+    }
+
     calendar.appendChild(day);
   }
 }
+
 renderCalendar();
+
 
 /* ===================== LAYOUT ===================== */
 const portfolioBox = document.getElementById("portfolioBox");
