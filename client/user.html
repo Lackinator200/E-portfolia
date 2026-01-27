@@ -17,32 +17,48 @@
                 <div class="right">
                     <a class="home-button" href="user.html">home</a>
                     <a class="market-button" href="market.html">market</a>
-                    <a class="groups-button" href="group_collection.html">group</a>
+                    <a class="groups-button" href="group_page.html">group</a>
                     <a class="feeds-button" href="feeds.html">Feeds</a>
                 </div>
             </div>
         </section>
         <div class="body">
         <div class="user-profile">
-            <div class="userlogo">
-                <img src="Photo/user-simple-flat-icon-illustration-vector.jpg" alt="user logo">
+            <div class="userlogo" id="userLogoContainer">
+                <img src="Photo/user-simple-flat-icon-illustration-vector.jpg" alt="user logo" id="userIcon">
             </div>
-            <h2 class="username">Waseem</h2>
-            <h3>description: N/A</h3>
-        </div>
-        <div class="change">
-            <div class="change-name">
-                <button class="change_button1" id="name_button">change name</button>
-            </div>
-            <div class="change-password">
-                <button class="change_button2">change password</button>
-                <form class="change_password_form" id="password_form">
-                    <input class="chnage_input" placeholder="enter a new password">
-                </form>
+            <button class="edit-icon-btn" id="changeIconBtn">Change Icon</button>
+            <input type="file" id="iconUpload" accept="image/*" hidden>
+            
+            <h2 class="username" id="userDisplay">Waseem</h2>
+            
+            <div class="profile-info">
+                <p><strong>Description:</strong> <span id="descriptionDisplay">N/A</span></p>
             </div>
         </div>
+
+        <div class="change-section">
+            <h3>Edit Profile</h3>
+            
+            <div class="change-group">
+                <label for="nameInput">Change Username:</label>
+                <div class="input-group">
+                    <input type="text" id="nameInput" class="change-input" placeholder="Enter new username">
+                    <button id="changeName" class="change-btn">Save</button>
+                </div>
+            </div>
+
+            <div class="change-group">
+                <label for="descriptionInput">Change Description:</label>
+                <div class="input-group">
+                    <input type="text" id="descriptionInput" class="change-input" placeholder="Enter new description">
+                    <button id="changeDescription" class="change-btn">Save</button>
+                </div>
+            </div>
+        </div>
+
             <div class="products-grid">
-                <h2>products they made:</h2>
+                <h2>Products they made:</h2>
                 <div class="product-card">
                     <img src="Photo/Logo for Digital Design E-portfolia.png" alt="Product 1" class="product-image">
                     <div class="product-content">
@@ -50,10 +66,10 @@
                         <p>A sleek and modern design theme for your portfolio.</p>
                     </div>
                 </div>
-                    <div class="product-card">
-                        <img src="Photo/Logo for Digital Design E-portfolia.png" alt="Product 2" class="product-image">
-                            <div class="product-content">
-                            <h3>Clean Layout</h3>
+                <div class="product-card">
+                    <img src="Photo/Logo for Digital Design E-portfolia.png" alt="Product 2" class="product-image">
+                    <div class="product-content">
+                        <h3>Clean Layout</h3>
                         <p>Professional layout template with responsive design.</p>
                     </div>
                 </div>

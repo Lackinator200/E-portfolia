@@ -98,6 +98,7 @@ body {
     flex-direction: column;
     align-items: flex-start;
     gap: 15px;
+    margin-bottom: 30px;
 }
 
 .userlogo {
@@ -119,11 +120,108 @@ body {
     object-fit: cover;
 }
 
+.edit-icon-btn {
+    background: linear-gradient(to right, #5096f9, #0515cc);
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 13px;
+    transition: all 0.3s;
+}
+
+.edit-icon-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(80, 150, 249, 0.3);
+}
+
 .username {
     margin: 0;
     font-size: 24px;
     color: #333;
     font-weight: bold;
+}
+
+.profile-info {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.profile-info p {
+    margin: 5px 0;
+}
+
+.change-section {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 30px;
+    max-width: 500px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.change-section h3 {
+    margin: 0 0 20px 0;
+    color: #333;
+    font-size: 18px;
+}
+
+.change-group {
+    margin-bottom: 20px;
+}
+
+.change-group label {
+    display: block;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+.input-group {
+    display: flex;
+    gap: 10px;
+}
+
+.change-input {
+    flex: 1;
+    padding: 10px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: border-color 0.3s;
+}
+
+.change-input:focus {
+    outline: none;
+    border-color: #5096f9;
+    box-shadow: 0 0 0 2px rgba(80, 150, 249, 0.1);
+}
+
+.change-btn {
+    background: linear-gradient(to right, #5096f9, #0515cc);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 14px;
+    transition: all 0.3s;
+    white-space: nowrap;
+}
+
+.change-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(80, 150, 249, 0.3);
+}
+
+.change-btn:active {
+    transform: translateY(0);
 }
 
 .products-grid {
@@ -173,26 +271,4 @@ body {
     font-size: 13px;
     color: #666;
     line-height: 1.4;
-}
-
-.change {
-    align-items: center;
-    text-align: right;
-    columns: 80px;
-}
-
-.change button {
-    background-color: #0515cc;
-    height: auto;
-    width: 80px;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    color: white;
-}
-
-.change_password_form {
-    opacity: 0;
-}
-
-.change_password_form:hover {
-    background-color: #000ea9;
 }

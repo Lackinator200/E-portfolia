@@ -7,7 +7,7 @@ const GRID = 20;
 // members
 const members = [
   { name: "Waseem", points: 8, leader: true },
-  { name: "Alex (sample)", points: 3, leader: false }
+  { name: "Alex (sample user)", points: 3, leader: false }
 ];
 
 // member list
