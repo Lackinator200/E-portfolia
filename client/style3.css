@@ -86,10 +86,20 @@ body {
     }
 }
 
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f2f2f2;
+}
+
 .page {
   display: flex;
-  padding: 20px;
   gap: 20px;
+  padding: 20px;
 }
 
 .column {
@@ -101,67 +111,90 @@ body {
 
 .box {
   background: white;
-  border: 2px solid #000;
-  resize: both;
-  overflow: auto;
-  min-width: 200px;
+  border: 2px solid black;
   min-height: 150px;
 }
 
 .box-header {
-  background: #eee;
+  background: #e5e5e5;
   padding: 6px;
   font-weight: bold;
-  cursor: move;
   display: flex;
   justify-content: space-between;
+  cursor: grab;
 }
 
+.box-content {
+  padding: 5px;
+}
+
+/* CHAT */
 .tabs button {
-  margin: 5px;
+  margin: 4px;
+}
+
+.tabs .active {
+  background: black;
+  color: white;
 }
 
 .chat-area {
   height: 200px;
+  overflow-y: auto;
   border: 1px solid #ccc;
-}
-
-.chat-input {
-  width: 95%;
-  margin: 5px;
-}
-
-.member {
-  display: flex;
-  justify-content: space-between;
   padding: 5px;
 }
 
-.image {
-  height: 150px;
-  background: #ddd;
+.chat-input {
+  width: 100%;
+  padding: 6px;
+}
+
+/* MEMBERS */
+.member {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  padding: 6px;
+  border-bottom: 1px solid #ddd;
 }
 
-#layoutPanel {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background: white;
-  border: 2px solid black;
+/* PORTFOLIO */
+.post img {
+  width: 100%;
+  margin-top: 5px;
+}
+
+/* CALENDAR */
+#calendar {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
   padding: 10px;
-  width: 220px;
-  display: none;
 }
 
-#layoutPanel label {
-  font-size: 12px;
-  margin-top: 6px;
-  display: block;
+.day {
+  border: 1px solid #999;
+  height: 70px;
+  padding: 4px;
+  position: relative;
+  cursor: pointer;
 }
 
+.day:hover {
+  background: #eee;
+}
+
+.event-dot {
+  width: 8px;
+  height: 8px;
+  background: red;
+  border-radius: 50%;
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+}
+
+/* LAYOUT PANEL */
 #layoutPanel {
   position: fixed;
   bottom: 15px;
@@ -169,52 +202,28 @@ body {
   background: white;
   border: 2px solid black;
   width: 230px;
-  z-index: 1000;
-  transition: height 0.3s ease;
+  z-index: 999;
 }
 
 #layoutHeader {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  background: #ddd;
   padding: 6px;
-  cursor: pointer;
-}
-
-#layoutBody {
-  padding: 10px;
+  background: #ddd;
 }
 
 #layoutPanel.collapsed #layoutBody {
   display: none;
 }
 
-#togglePanel {
-  border: none;
-  background: none;
-  cursor: pointer;
-  font-size: 14px;
-}
-
-/* 📱 Mobile support */
+/* MOBILE */
 @media (max-width: 768px) {
   .page {
     flex-direction: column;
   }
 
-  .column {
-    width: 100%;
-  }
-
-  .box {
-    width: 100% !important;
-    position: relative !important;
-  }
-
   #layoutPanel {
     width: 90%;
     left: 5%;
-    right: 5%;
   }
 }

@@ -1,65 +1,90 @@
-<!-- client/group.html -->
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>Group Page</title>
-  <link rel="stylesheet" href="styles/group.css">
+  <meta charset="UTF-8" />
+  <title>CommunHub</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style3.css">
 </head>
 <body>
-  <header>
-    <h2 id="groupTitle">Group</h2>
-    <div id="userInfo"></div>
-  </header>
+        <section>
+            <div class="nav-Bar">
+                <div class="left">
+                    <img src="Photo/Logo for Digital Design E-portfolia.png" alt="CommunHub Logo" class="logo" href="Index.html">
+                    <h3 class="title">CommunHub</h3>
+                </div>
+                <div class="right">
+                    <a class="home-button" href="group_page.html">home</a>
+                    <a class="market-button" href="market.html">market</a>
+                    <a class="groups-button" href="group_collection.html">group</a>
+                    <a class="feeds-button" href="feeds.html">Feeds</a>
+                </div>
+            </div>
+        </section>
+<div class="page">
 
-  <main class="page">
-    <section class="left-col">
-      <div class="box" data-type="chat" id="chatBox">
-        <div class="box-header">Chat</div>
-        <div class="tabs" id="chatTabs">
-          <button data-chat="group" class="active">Group</button>
-        </div>
-        <div class="box-content chat-area" id="chatArea"></div>
-        <input id="chatInput" placeholder="Type and press Enter">
+  <!-- LEFT COLUMN -->
+  <div class="column">
+
+    <!-- CHAT -->
+    <div class="box" data-type="chat">
+      <div class="box-header">Chat</div>
+
+      <div class="tabs" id="chatTabs">
+        <button data-chat="group" class="active">Group</button>
       </div>
 
-      <div class="box" data-type="members" id="membersBox">
-        <div class="box-header">Members</div>
-        <div class="box-content" id="memberList"></div>
-      </div>
-    </section>
-
-    <section class="right-col">
-      <div class="box" data-type="portfolio" id="portfolioBox">
-        <div class="box-header">Portfolio
-          <input id="upload" type="file" style="display:none"> 
-          <button id="uploadBtn">Upload</button>
-        </div>
-        <div class="box-content" id="portfolioFeed"></div>
-      </div>
-
-      <div class="box" data-type="calendar" id="calendarBox">
-        <div class="box-header">Calendar</div>
-        <div class="box-content" id="calendar"></div>
-      </div>
-    </section>
-  </main>
-
-  <!-- layout control panel -->
-  <div id="layoutPanel" class="collapsed">
-    <div id="layoutHeader">
-      <span>Layout Control</span>
-      <button id="togglePanel">Edit</button>
-      <button id="editToggle">Mode</button>
+      <div class="box-content chat-area" id="chatArea"></div>
+      <input id="chatInput" class="chat-input" placeholder="Type and press Enter">
     </div>
-    <div id="layoutBody">
-      <label>Width <input id="widthControl" type="range" min="200" max="900"></label>
-      <label>Height <input id="heightControl" type="range" min="150" max="700"></label>
-      <button id="saveLayout">Save Layout</button>
+
+    <!-- MEMBERS -->
+    <div class="box" data-type="members">
+      <div class="box-header">Members</div>
+      <div id="memberList"></div>
     </div>
+
   </div>
 
-  <script src="socket.js"></script>
-  <script src="group.js"></script>
+  <!-- RIGHT COLUMN -->
+  <div class="column">
+
+    <!-- PORTFOLIO -->
+    <div class="box" data-type="portfolio" id="portfolioBox">
+      <div class="box-header">
+        Portfolio
+        <input type="file" id="upload" hidden>
+        <button onclick="upload.click()">Upload</button>
+      </div>
+      <div id="portfolioFeed"></div>
+    </div>
+
+    <!-- CALENDAR -->
+    <div class="box" data-type="calendar">
+      <div class="box-header">Calendar</div>
+      <div id="calendar"></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- LAYOUT PANEL -->
+<div id="layoutPanel" class="collapsed">
+  <div id="layoutHeader">
+    <span>Layout</span>
+    <button id="editToggle">Edit</button>
+    <button id="togglePanel">▲</button>
+  </div>
+
+  <div id="layoutBody">
+    <label>Width</label>
+    <input type="range" id="widthControl" min="250" max="700">
+
+    <label>Height</label>
+    <input type="range" id="heightControl" min="200" max="600">
+  </div>
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>
