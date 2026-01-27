@@ -1,28 +1,43 @@
-// server/routes/auth.routes.js
 const express = require("express");
 const router = express.Router();
-const { signToken } = require("../auth");
-const db = require("../db");
+const jwt = require("jsonwebtoken");
+const { createUser, findUserByEmail } = require("../db");
 
-// simple login for demo: accept a username
-router.post("/login", (req, res) => {
-  const { username } = req.body;
-  if (!username) return res.status(400).json({ error: "username required" });
+const SECRET = "school-secret";
 
-  // try to find user, otherwise create a simple MEMBER user (demo)
-  let user = db.getUserByName(username);
-  if (!user) {
-    const data = db.readDB();
-    const newId = data.users.length + 1;
-    const perms = ["chat","portfolio"];
-    user = { id: newId, name: username, role: "MEMBER", perms };
-    data.users.push(user);
-    data.groups["group_alpha"].members.push(newId);
-    db.writeDB(data);
+// SIGNUP
+router.post("/signup", (req, res) => {
+  const { username, email, password } = req.body;
+
+  if (findUserByEmail(email)) {
+    return res.status(400).json({ error: "Email exists" });
   }
 
-  const token = signToken({ id: user.id, name: user.name, role: user.role, perms: user.perms });
-  res.json({ token, user: { id: user.id, name: user.name, role: user.role } });
+  createUser({
+    username,
+    email,
+    password,   // plaintext is OK for school
+    role: "MEMBER"
+  });
+
+  res.sendStatus(201);
+});
+
+// LOGIN
+router.post("/login", (req, res) => {
+  const { email, password } = req.body;
+  const user = findUserByEmail(email);
+
+  if (!user || user.password !== password) {
+    return res.status(401).json({ error: "Invalid login" });
+  }
+
+  const token = jwt.sign({
+    username: user.username,
+    role: user.role
+  }, SECRET);
+
+  res.json({ token });
 });
 
 module.exports = router;

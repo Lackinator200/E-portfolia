@@ -12,6 +12,33 @@ const error_message = document.getElementById('error-message');
     });
 });
 
+fetch("http://localhost:3000/api/auth/signup", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({
+    username,
+    email,
+    password
+  })
+})
+.then(res => {
+  if (!res.ok) throw new Error("Signup failed");
+  window.location.href = "login.html";
+})
+.catch(err => alert(err.message));
+
+fetch("http://localhost:3000/api/auth/login", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({ email, password })
+})
+.then(res => res.json())
+.then(data => {
+  localStorage.setItem("token", data.token);
+  window.location.href = "group.html";
+})
+.catch(() => alert("Login failed"));
+
 form.addEventListener('submit', (e) => {
     // e.preventDefault() prevent submit
     let error = [];
