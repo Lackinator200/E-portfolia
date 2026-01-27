@@ -113,6 +113,8 @@ body {
   background: white;
   border: 2px solid black;
   min-height: 150px;
+  display: flex;
+  flex-direction: column;
 }
 
 .box-header {
@@ -121,11 +123,75 @@ body {
   font-weight: bold;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   cursor: grab;
+  flex-shrink: 0;
+}
+
+.box-header button {
+  background: #5096f9;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 3px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 12px;
+  transition: background 0.3s;
+}
+
+.box-header button:hover {
+  background: #0515cc;
 }
 
 .box-content {
-  padding: 5px;
+  padding: 10px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+#portfolioFeed {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.post {
+  background: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 10px;
+  transition: box-shadow 0.3s ease;
+}
+
+.post:hover {
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.post strong {
+  display: block;
+  color: #5096f9;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.post img {
+  width: 100%;
+  max-height: 250px;
+  object-fit: cover;
+  border-radius: 3px;
+  margin: 8px 0;
+}
+
+.post p {
+  margin: 8px 0;
+  color: #333;
+  font-size: 13px;
+}
+
+.post small {
+  color: #999;
+  font-size: 11px;
 }
 
 /* CHAT */
@@ -200,20 +266,123 @@ body {
   bottom: 15px;
   right: 15px;
   background: white;
-  border: 2px solid black;
-  width: 230px;
+  border: 2px solid #5096f9;
+  border-radius: 8px;
+  width: 260px;
   z-index: 999;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 #layoutHeader {
   display: flex;
   justify-content: space-between;
-  padding: 6px;
-  background: #ddd;
+  align-items: center;
+  padding: 12px;
+  background: linear-gradient(to right, #5096f9, #0515cc);
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 6px 6px 0 0;
+}
+
+#layoutBody {
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
 #layoutPanel.collapsed #layoutBody {
   display: none;
+}
+
+#togglePanel {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 4px 8px;
+  border-radius: 3px;
+  transition: background 0.3s;
+}
+
+#togglePanel:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+#layoutBody label {
+  font-weight: bold;
+  color: #333;
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+#boxSelector,
+#widthControl,
+#heightControl {
+  width: 100%;
+  padding: 6px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 12px;
+}
+
+#boxSelector {
+  padding: 8px 6px;
+}
+
+#boxSelector:focus,
+#widthControl:focus,
+#heightControl:focus {
+  outline: none;
+  border-color: #5096f9;
+  box-shadow: 0 0 0 2px rgba(80, 150, 249, 0.1);
+}
+
+#widthControl,
+#heightControl {
+  cursor: pointer;
+}
+
+#widthValue,
+#heightValue {
+  display: inline-block;
+  font-size: 11px;
+  color: #666;
+  margin-left: 5px;
+}
+
+.save-btn,
+.edit-btn {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 12px;
+  transition: all 0.3s;
+  width: 100%;
+}
+
+.save-btn {
+  background: #4caf50;
+  color: white;
+}
+
+.save-btn:hover {
+  background: #45a049;
+  transform: translateY(-1px);
+}
+
+.edit-btn {
+  background: #5096f9;
+  color: white;
+}
+
+.edit-btn:hover {
+  background: #0515cc;
+  transform: translateY(-1px);
 }
 
 /* MOBILE */

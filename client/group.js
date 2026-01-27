@@ -4,13 +4,13 @@ const groupId = "group_alpha";
 const currentUser = "Waseem";
 const GRID = 20;
 
-/* MEMBERS */
+// members
 const members = [
   { name: "Waseem", points: 8, leader: true },
-  { name: "Alex", points: 1, leader: false }
+  { name: "Alex (sample)", points: 3, leader: false }
 ];
 
-/* ===================== MEMBERS ===================== */
+// member list
 const memberList = document.getElementById("memberList");
 
 function renderMembers() {
@@ -29,8 +29,7 @@ function renderMembers() {
 
 renderMembers();
 
-
-/* ===================== CHAT ===================== */
+// chat box
 const chatArea = document.getElementById("chatArea");
 const chatInput = document.getElementById("chatInput");
 const tabsContainer = document.querySelector(".tabs");
@@ -98,7 +97,7 @@ chatInput.addEventListener("keydown", e => {
 });
 
 
-/* ===================== PORTFOLIO ===================== */
+// portfolio
 const upload = document.getElementById("upload");
 const feed = document.getElementById("portfolioFeed");
 
@@ -147,7 +146,7 @@ function renderPortfolio() {
 
 renderPortfolio();
 
-/* ===================== CALENDAR ===================== */
+// calendar
 const calendar = document.getElementById("calendar");
 
 function renderCalendar() {
@@ -189,52 +188,206 @@ function renderCalendar() {
 renderCalendar();
 
 
-/* ===================== LAYOUT ===================== */
-const portfolioBox = document.getElementById("portfolioBox");
-const widthControl = document.getElementById("widthControl");
-const heightControl = document.getElementById("heightControl");
+// layout custom
 const layoutPanel = document.getElementById("layoutPanel");
 const togglePanel = document.getElementById("togglePanel");
+const boxSelector = document.getElementById("boxSelector");
+const widthControl = document.getElementById("widthControl");
+const heightControl = document.getElementById("heightControl");
+const widthValue = document.getElementById("widthValue");
+const heightValue = document.getElementById("heightValue");
+const saveLayoutBtn = document.getElementById("saveLayoutBtn");
 const editToggle = document.getElementById("editToggle");
 
+const GRID_SIZE = 20;
 let editMode = false;
+let selectedBox = null;
 let dragTarget = null;
 let offsetX = 0;
 let offsetY = 0;
 
-if (!isLeader) layoutPanel.style.display = "none";
-
-function saveLayout() {
-  localStorage.setItem(
-    `layout_${groupId}`,
-    JSON.stringify({
-      width: portfolioBox.style.width,
-      height: portfolioBox.style.height,
-      left: portfolioBox.style.left,
-      top: portfolioBox.style.top,
-      position: portfolioBox.style.position
-    })
-  );
-}
-
-function loadLayout() {
-  const data = JSON.parse(localStorage.getItem(`layout_${groupId}`));
-  if (data) Object.assign(portfolioBox.style, data);
-}
-loadLayout();
-
-editToggle.onclick = () => {
-  editMode = !editMode;
-  editToggle.textContent = editMode ? "Done" : "Edit";
+// Get all boxes
+const boxes = {
+  chatBox: document.querySelector('[data-box-id="chatBox"]'),
+  membersBox: document.querySelector('[data-box-id="membersBox"]'),
+  portfolioBox: document.querySelector('[data-box-id="portfolioBox"]'),
+  calendarBox: document.querySelector('[data-box-id="calendarBox"]')
 };
 
+// Toggle layout panel
 togglePanel.onclick = () => {
   layoutPanel.classList.toggle("collapsed");
 };
 
-portfolioBox.querySelector(".box-header").onmousedown = e => {
-  if (!editMode || !isLeader) return;
-  dragTarget = portfolioBox;
-  offsetX = e.clientX - portfolioBox.offsetLeft;
-  offsetY = e.clientY - portfolioBox.offsetTop;
+// Box selection
+boxSelector.addEventListener("change", (e) => {
+  if (!e.target.value) {
+    selectedBox = null;
+    widthControl.disabled = true;
+    heightControl.disabled = true;
+    return;
+  }
+  
+  selectedBox = e.target.value;
+  const box = boxes[selectedBox];
+  
+  widthControl.disabled = false;
+  heightControl.disabled = false;
+  
+  // Get current dimensions
+  const width = box.offsetWidth || 400;
+  const height = box.offsetHeight || 300;
+  
+  widthControl.value = width;
+  heightControl.value = height;
+  widthValue.textContent = width + "px";
+  heightValue.textContent = height + "px";
+  
+  if (editMode) {
+    highlightBox(box);
+  }
+});
+
+// Width control
+widthControl.addEventListener("input", (e) => {
+  if (!selectedBox) return;
+  const box = boxes[selectedBox];
+  const width = e.target.value;
+  box.style.width = width + "px";
+  widthValue.textContent = width + "px";
+});
+
+// Height control
+heightControl.addEventListener("input", (e) => {
+  if (!selectedBox) return;
+  const box = boxes[selectedBox];
+  const height = e.target.value;
+  box.style.height = height + "px";
+  heightValue.textContent = height + "px";
+});
+
+// Edit mode toggle
+editToggle.onclick = () => {
+  editMode = !editMode;
+  editToggle.textContent = editMode ? "Done Editing" : "Edit Mode";
+  editToggle.style.background = editMode ? "#ff6b6b" : "#5096f9";
+  
+  if (editMode) {
+    if (selectedBox) {
+      highlightBox(boxes[selectedBox]);
+    }
+    enableDragging();
+  } else {
+    disableDragging();
+    removeHighlights();
+  }
+};
+
+function highlightBox(box) {
+  removeHighlights();
+  box.style.border = "3px dashed #5096f9";
 }
+
+function removeHighlights() {
+  Object.values(boxes).forEach(box => {
+    if (box) box.style.border = "";
+  });
+}
+
+// Snap to grid function
+function snap(value) {
+  return Math.round(value / GRID_SIZE) * GRID_SIZE;
+}
+
+// Enable dragging for all boxes
+function enableDragging() {
+  Object.entries(boxes).forEach(([key, box]) => {
+    if (!box) return;
+    const header = box.querySelector(".box-header");
+    if (header) {
+      header.style.cursor = "grab";
+      header.onmousedown = startDrag;
+    }
+  });
+}
+
+// Disable dragging
+function disableDragging() {
+  Object.entries(boxes).forEach(([key, box]) => {
+    if (!box) return;
+    const header = box.querySelector(".box-header");
+    if (header) {
+      header.style.cursor = "grab";
+      header.onmousedown = null;
+    }
+  });
+}
+
+function startDrag(e) {
+  if (!editMode) return;
+  dragTarget = e.target.closest(".box");
+  if (!dragTarget) return;
+  
+  offsetX = e.clientX - dragTarget.offsetLeft;
+  offsetY = e.clientY - dragTarget.offsetTop;
+  
+  dragTarget.style.position = "absolute";
+  document.addEventListener("mousemove", doDrag);
+  document.addEventListener("mouseup", stopDrag);
+}
+
+function doDrag(e) {
+  if (!dragTarget) return;
+  
+  const x = snap(e.clientX - offsetX);
+  const y = snap(e.clientY - offsetY);
+  
+  dragTarget.style.left = x + "px";
+  dragTarget.style.top = y + "px";
+}
+
+function stopDrag() {
+  document.removeEventListener("mousemove", doDrag);
+  document.removeEventListener("mouseup", stopDrag);
+  dragTarget = null;
+}
+
+// Save layout to localStorage
+saveLayoutBtn.onclick = () => {
+  const layout = {};
+  
+  Object.entries(boxes).forEach(([key, box]) => {
+    if (box) {
+      layout[key] = {
+        width: box.style.width || box.offsetWidth,
+        height: box.style.height || box.offsetHeight,
+        left: box.style.left || "",
+        top: box.style.top || "",
+        position: box.style.position || "relative"
+      };
+    }
+  });
+  
+  localStorage.setItem(`layout_${groupId}`, JSON.stringify(layout));
+  alert("Layout saved successfully!");
+};
+
+// Load layout from localStorage
+function loadLayout() {
+  const savedLayout = localStorage.getItem(`layout_${groupId}`);
+  if (!savedLayout) return;
+  
+  const layout = JSON.parse(savedLayout);
+  
+  Object.entries(layout).forEach(([key, styles]) => {
+    const box = boxes[key];
+    if (box) {
+      Object.assign(box.style, styles);
+    }
+  });
+}
+
+// Initialize
+widthControl.disabled = true;
+heightControl.disabled = true;
+loadLayout();
