@@ -1,87 +1,65 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>CommunHub</title>
-        <link rel="stylesheet" href="style3.css">
-        <script src="group.js" defer></script>
-    </head>
-    <body>
-        <section>
-            <div class="nav-Bar">
-                <div class="left">
-                    <img src="Photo/Logo for Digital Design E-portfolia.png" alt="CommunHub Logo" class="logo">
-                    <h3 class="title">CommunHub</h3>
-                </div>
-                <div class="right">
-                    <a class="home" href="home.html">home</a>
-                    <a class="group-page" href="group_page.html">Group Page</a>
-                    <a class="feed-page" href="feed_page.html">Feed Page</a>
-                    <a class="market-page" href="market_page.html">Market Page</a>
-                </div>
-            </div> <!-- hey waseem, ask chatgpt for this one, cuz how would u make the layout of the group plus with member list?-->
-            <div class="page">
+<!-- client/group.html -->
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Group Page</title>
+  <link rel="stylesheet" href="styles/group.css">
+</head>
+<body>
+  <header>
+    <h2 id="groupTitle">Group</h2>
+    <div id="userInfo"></div>
+  </header>
 
-  <!-- LEFT COLUMN -->
-  <div class="column">
-    <div class="box" data-type="chat">
-    <div class="box-header">Chat box</div>
+  <main class="page">
+    <section class="left-col">
+      <div class="box" data-type="chat" id="chatBox">
+        <div class="box-header">Chat</div>
+        <div class="tabs" id="chatTabs">
+          <button data-chat="group" class="active">Group</button>
+        </div>
+        <div class="box-content chat-area" id="chatArea"></div>
+        <input id="chatInput" placeholder="Type and press Enter">
+      </div>
 
-    <div class="tabs">
-    <button data-chat="group" class="active">Group</button>
+      <div class="box" data-type="members" id="membersBox">
+        <div class="box-header">Members</div>
+        <div class="box-content" id="memberList"></div>
+      </div>
+    </section>
+
+    <section class="right-col">
+      <div class="box" data-type="portfolio" id="portfolioBox">
+        <div class="box-header">Portfolio
+          <input id="upload" type="file" style="display:none"> 
+          <button id="uploadBtn">Upload</button>
+        </div>
+        <div class="box-content" id="portfolioFeed"></div>
+      </div>
+
+      <div class="box" data-type="calendar" id="calendarBox">
+        <div class="box-header">Calendar</div>
+        <div class="box-content" id="calendar"></div>
+      </div>
+    </section>
+  </main>
+
+  <!-- layout control panel -->
+  <div id="layoutPanel" class="collapsed">
+    <div id="layoutHeader">
+      <span>Layout Control</span>
+      <button id="togglePanel">Edit</button>
+      <button id="editToggle">Mode</button>
     </div>
-
-    <div class="box-content chat-area" id="chatArea"></div>
-    <input class="chat-input" id="chatInput" placeholder="Text here" />
+    <div id="layoutBody">
+      <label>Width <input id="widthControl" type="range" min="200" max="900"></label>
+      <label>Height <input id="heightControl" type="range" min="150" max="700"></label>
+      <button id="saveLayout">Save Layout</button>
     </div>
-
-
-<div class="box" data-type="members">
-  <div class="box-header">Members</div>
-  <div id="memberList"></div>
-</div>
-
   </div>
 
-  <!-- RIGHT COLUMN -->
-  <div class="column">
-    <div class="box" data-type="portfolio">
-    <div class="box-header">
-        Portfolio
-        <input type="file" id="upload" hidden />
-        <button onclick="upload.click()">Upload</button>
-    </div>
-    <div id="portfolioFeed"></div>
-    </div>
-
-
-    <div class="box" data-type="calendar">
-    <div class="box-header">Calendar</div>
-    <div class="calendar" id="calendar"></div>
-    </div>
-
-  </div>
-
-</div>
-
-<!-- LEADER CONTROL PANEL -->
-<div id="layoutPanel" class="collapsed">
-  <div id="layoutHeader">
-    <span>Layout Control</span>
-    <button id="togglePanel">▲</button>
-    <button id="editToggle">Edit</button>
-  </div>
-
-  <div id="layoutBody">
-    <label>Width</label>
-    <input type="range" id="widthControl" min="250" max="700">
-
-    <label>Height</label>
-    <input type="range" id="heightControl" min="200" max="600">
-  </div>
-</div>
-
-        </section> 
-        
-            
+  <script src="socket.js"></script>
+  <script src="group.js"></script>
+</body>
+</html>
