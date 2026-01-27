@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>CommunHub</title>
+        <link rel="stylesheet" href="style_store.css">
+        <script src="script.js" defer></script>
+    </head>
+    <body>
+        <section>
+            <div class="nav-Bar">
+                <div class="left">
+                    <img src="Photo/Logo for Digital Design E-portfolia.png" alt="CommunHub Logo" class="logo"> <a href="Index.html"></a>
+                    <h3 class="title">CommunHub</h3>
+                </div>
+                <div class="right">
+                    <a class="home-button" href="group_page.html">home</a>
+                    <a class="market-button" href="market.html">market</a>
+                    <a class="groups-button" href="group_collection.html">group</a>
+                    <a class="feeds-button" href="feeds.html">Feeds</a>
+                </div>
+            </div>
+        </section>
+        <div class="body">
+            <div class="market_topic">
+                <h2>Market popular products</h2>
+            </div>
+            <div class="filter_box">
+                <div class="filter-item box">
+                    <label for="category">Category</label>
+                    <select id="category">
+                        <option value="">All Categories</option>
+                        <option value="digital">Digital Assets</option>
+                        <option value="templates">Templates</option>
+                        <option value="services">Services</option>
+                        <option value="courses">Courses</option>
+                    </select>
+                </div>
+                
+                <div class="filter-item box">
+                    <label for="priceMin">Price Range</label>
+                    <div class="price-inputs">
+                        <input type="number" id="priceMin" placeholder="Min" min="0">
+                        <span>-</span>
+                        <input type="number" id="priceMax" placeholder="Max" min="0">
+                    </div>
+                </div>
+                
+                <div class="filter-item box">
+                    <label for="productType">Product Type</label>
+                    <select id="productType">
+                        <option value="">All Types</option>
+                        <option value="theme">Theme</option>
+                        <option value="layout">Layout</option>
+                        <option value="events">Events</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="products-grid">
+                <div class="product-card">
+                    <img src="Photo/Logo for Digital Design E-portfolia.png" alt="Product 1" class="product-image">
+                    <div class="product-content">
+                        <h3>Modern Theme</h3>
+                        <p>A sleek and modern design theme for your portfolio.</p>
+                    </div>
+                    <button class="buy-btn">Buy</button>
+                </div>
+
+                <div class="product-card">
+                    <img src="Photo/Logo for Digital Design E-portfolia.png" alt="Product 2" class="product-image">
+                    <div class="product-content">
+                        <h3>Clean Layout</h3>
+                        <p>Professional layout template with responsive design.</p>
+                    </div>
+                    <button class="buy-btn">Buy</button>
+                </div>
+
+                <div class="product-card">
+                    <img src="Photo/Logo for Digital Design E-portfolia.png" alt="Product 3" class="product-image">
+                    <div class="product-content">
+                        <h3>Event Manager</h3>
+                        <p>Manage and schedule events with ease.</p>
+                    </div>
+                    <button class="buy-btn">Buy</button>
+                </div>
+
+                <div class="product-card">
+                    <img src="Photo/Logo for Digital Design E-portfolia.png" alt="Product 4" class="product-image">
+                    <div class="product-content">
+                        <h3>Premium Theme</h3>
+                        <p>Advanced features and customization options included.</p>
+                    </div>
+                    <button class="buy-btn">Buy</button>
+                </div>
+
+                <div class="product-card">
+                    <img src="Photo/Logo for Digital Design E-portfolia.png" alt="Product 5" class="product-image">
+                    <div class="product-content">
+                        <h3>Dynamic Layout</h3>
+                        <p>Interactive layout with smooth animations.</p>
+                    </div>
+                    <button class="buy-btn">Buy</button>
+                </div>
+
+                <div class="product-card">
+                    <img src="Photo/Logo for Digital Design E-portfolia.png" alt="Product 6" class="product-image">
+                    <div class="product-content">
+                        <h3>Event Template</h3>
+                        <p>Complete event management solution for teams.</p>
+                    </div>
+                    <button class="buy-btn">Buy</button>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
