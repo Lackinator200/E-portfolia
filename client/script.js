@@ -1,3 +1,5 @@
+
+
 const whatAreSection = document.querySelector('.what-are');
 
 window.addEventListener('scroll', () => {
@@ -11,3 +13,4 @@ window.addEventListener('scroll', () => {
         whatAreSection.classList.remove('visible');
     }
 });
+

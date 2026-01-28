@@ -4,6 +4,10 @@ const email_input = document.getElementById('email-input');
 const password_input = document.getElementById('password-input');
 const confirm_password_input = document.getElementById('confirm-password-input');
 const error_message = document.getElementById('error-message');
+const fullname = document.getElementById("fullname").value;
+const email = document.getElementById("email").value;
+const password = document.getElementById("password").value;
+
 
 // Clear error styling when user starts typing
 [fullname_input, email_input, password_input, confirm_password_input].forEach(input => {
@@ -11,6 +15,33 @@ const error_message = document.getElementById('error-message');
         input.parentElement.classList.remove('incorrect');
     });
 });
+
+fetch("http://localhost:3000/api/auth/signup", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({
+    fullname,
+    email,
+    password
+  })
+})
+.then(res => {
+  if (!res.ok) throw new Error("Signup failed");
+  window.location.href = "login.html";
+})
+.catch(err => alert(err.message));
+
+fetch("http://localhost:3000/api/auth/login", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({ email, password })
+})
+.then(res => res.json())
+.then(data => {
+  localStorage.setItem("token", data.token);
+  window.location.href = "group.html";
+})
+.catch(() => alert("Login failed"));
 
 form.addEventListener('submit', (e) => {
     // e.preventDefault() prevent submit
@@ -33,6 +64,21 @@ form.addEventListener('submit', (e) => {
         error_message_element.innerText = error.join('\n');
     }
 });
+
+fetch("http://localhost:3000/api/auth/signup", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({ fullname, email, password })
+})
+.then(res => {
+  if (!res.ok) throw new Error("Signup failed");
+  alert("Signup successful! Now login.");
+  window.location.href = "login.html";
+})
+.catch(err => {
+  alert(err.message);
+});
+
 
 function getSignupFormErrors(fullname, email, password, confirm_password) { 
     let error = [];
@@ -92,4 +138,15 @@ allInputs.forEach(input => {
             input.parentElement.classList.remove('incorrect');
         }
     });
+});
+
+fetch("http://localhost:3000/api/auth/login", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({ fullname })
+})
+.then(res => res.json())
+.then(data => {
+  localStorage.setItem("token", data.token);
+  window.location.href = "group.html";
 });

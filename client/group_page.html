@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>CommunHub</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style3.css">
+</head>
+<body>
+        <section>
+            <div class="nav-Bar">
+                <div class="left">
+                    <img src="Photo/Logo for Digital Design E-portfolia.png" alt="CommunHub Logo" class="logo" href="Index.html">
+                    <h3 class="title">CommunHub</h3>
+                </div>
+                <div class="right">
+                    <a class="home-button" href="user.html">home</a>
+                    <a class="market-button" href="market.html">market</a>
+                    <a class="groups-button" href="group_page.html">group</a>
+                    <a class="feeds-button" href="feeds.html">Feeds</a>
+                </div>
+            </div>
+        </section>
+<div class="page">
+
+  <!-- LEFT COLUMN -->
+  <div class="column">
+
+    <!-- CHAT -->
+<div class="box" data-type="chat" data-box-id="chatBox">
+  <div class="box-header">Chat box</div>
+
+  <div class="tabs">
+    <button data-chat="group" class="active">Group</button>
+  </div>
+
+  <div class="box-content chat-area" id="chatArea"></div>
+  <input class="chat-input" id="chatInput" placeholder="Text here" />
+</div>
+
+
+    <!-- MEMBERS -->
+    <div class="box" data-type="members" data-box-id="membersBox">
+      <div class="box-header">Members</div>
+      <div id="memberList"></div>
+    </div>
+
+  </div>
+
+  <!-- RIGHT COLUMN -->
+  <div class="column">
+
+    <!-- PORTFOLIO -->
+    <div class="box" data-type="portfolio" id="portfolioBox" data-box-id="portfolioBox">
+      <div class="box-header">
+        Portfolio
+        <input type="file" id="upload" hidden>
+        <button onclick="upload.click()">Upload</button>
+      </div>
+      <div class="box-content" id="portfolioFeed"></div>
+    </div>
+
+    <!-- CALENDAR -->
+    <div class="box" data-type="calendar" data-box-id="calendarBox">
+      <div class="box-header">Calendar</div>
+      <div id="calendar"></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- LAYOUT PANEL -->
+<div id="layoutPanel" class="collapsed">
+  <div id="layoutHeader">
+    <span>Layout Control</span>
+    <button id="togglePanel">▲</button>
+  </div>
+
+  <div id="layoutBody">
+    <label>Select Box:</label>
+    <select id="boxSelector">
+      <option value="">-- Choose a box --</option>
+      <option value="chatBox">Chat Box</option>
+      <option value="membersBox">Members</option>
+      <option value="portfolioBox">Portfolio</option>
+      <option value="calendarBox">Calendar</option>
+    </select>
+
+    <label>Width</label>
+    <input type="range" id="widthControl" min="200" max="900" value="400">
+    <span id="widthValue">400px</span>
+
+    <label>Height</label>
+    <input type="range" id="heightControl" min="150" max="700" value="300">
+    <span id="heightValue">300px</span>
+
+    <button id="saveLayoutBtn" class="save-btn">Save Layout</button>
+    <button id="editToggle" class="edit-btn">Edit Mode</button>
+  </div>
+</div>
+
+<script src="group.js"></script>
+</body>
+</html>
