@@ -19,6 +19,19 @@ body {
     align-items: center;
     flex-wrap: wrap;
     gap: 10px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    z-index: 1000;
+    transition: transform 0.3s ease-in-out;
+    transform: translateY(0);
+    box-sizing: border-box;
+}
+
+.nav-Bar.hide {
+    transform: translateY(-100%);
 }
 
 .nav-Bar .left {
@@ -88,6 +101,7 @@ body {
 
 .hero {
     width: 100%;
+    margin-top: 70px;
 }
 
 .hero-Image {
